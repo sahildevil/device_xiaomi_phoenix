@@ -22,7 +22,8 @@ $(call inherit-product-if-exists, vendor/google/psu/google-psu.mk)
 
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
-
+PRODUCT_BOARD_PLATFORM := sm6150
+PRODUCT_USES_QCOM_HARDWARE := true
 PRODUCT_BUILD_SUPER_PARTITION := false
 BOARD_BUILD_PRODUCT_IMAGE := true
 PRODUCT_SHIPPING_API_LEVEL := 29
@@ -122,8 +123,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sound_trigger_platform_info.xml
 
 PRODUCT_COPY_FILES += \
-    frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
-    frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/audio_policy_configuration_bluetooth_legacy_hal.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration_bluetooth_legacy_hal.xml \
     frameworks/av/services/audiopolicy/config/audio_policy_configuration_generic_configurable.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration_generic_configurable.xml \
     frameworks/av/services/audiopolicy/config/audio_policy_configuration_generic_tv.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration_generic_tv.xml \
@@ -498,10 +497,6 @@ PRODUCT_PACKAGES += \
     fstab.qcom \
     fstab.emmc \
     ueventd.qcom.rc
-
-# Remove Packages
-PRODUCT_PACKAGES += \
-    RemovePackages
 
 # RIL
 PRODUCT_PACKAGES += \
